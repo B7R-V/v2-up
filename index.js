@@ -13,6 +13,9 @@ if (!fs.existsSync('uploads')) {
 // جعل الملفات قابلة للوصول بالرابط
 app.use('/uploads', express.static('uploads'))
 
+// إضافة مجلد public للملفات الثابتة (HTML, CSS, JS)
+app.use(express.static('public'))
+
 // إنشاء اسم عشوائي من 5 أحرف
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -35,6 +38,44 @@ const storage = multer.diskStorage({
 // إعداد Multer
 const upload = multer({
     storage,
+    limits: {
+        fileSize: 100 * 1024 * 1024 // 100MB
+    }
+})
+
+// الصفحة الرئيسية - عرض ملف index.html من مجلد public
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+
+// رفع الملف
+app.post('/api/upload', upload.single('file'), (req, res) => {
+
+    if (!req.file) {
+        return res.status(400).json({
+            success: false,
+            message: 'لم يتم إرسال أي ملف'
+        })
+    }
+
+    const url = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+
+    res.json({
+        success: true,
+        url,
+        filename: req.file.filename,
+        originalname: req.file.originalname,
+        mimetype: req.file.mimetype,
+        size: req.file.size
+    })
+
+})
+
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+})    storage,
     limits: {
         fileSize: 100 * 1024 * 1024 // 100MB
     }
