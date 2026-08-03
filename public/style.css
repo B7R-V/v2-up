@@ -1,0 +1,470 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 20% 30%, #1a1a2e, #0f0f1a);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    padding: 20px;
+    position: relative;
+}
+
+/* ===== CONTAINER & CARD ===== */
+.upload-container {
+    width: 100%;
+    max-width: 520px;
+}
+
+.upload-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 40px;
+    padding: 40px 32px 32px;
+    box-shadow: 0 25px 50px -8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.25s ease;
+    color: #f0f0f5;
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-card:hover {
+    transform: scale(1.01);
+}
+
+/* ===== ICON ===== */
+.card-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a78bfa;
+}
+
+.card-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+/* ===== TITLE ===== */
+.card-title {
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(135deg, #e0e0ff, #b8b0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+}
+
+.card-subtitle {
+    text-align: center;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 28px;
+}
+
+/* ===== FILE SELECT ===== */
+.file-select-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 60px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #7c6bf5, #5b4ad0);
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    font-size: 18px;
+    box-shadow: 0 8px 24px rgba(91, 74, 208, 0.25);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(91, 74, 208, 0.4);
+}
+
+.btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.action-row {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0 20px;
+}
+
+/* ===== FILE INFO ===== */
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.file-info.hidden {
+    display: none;
+}
+
+.file-info-icon {
+    color: #a78bfa;
+    flex-shrink: 0;
+}
+
+.file-info-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.file-info-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.file-name {
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-size {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.file-remove {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    transition: 0.15s;
+}
+
+.file-remove:hover {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.1);
+}
+
+.file-remove svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ===== PROGRESS ===== */
+.progress-wrapper {
+    margin: 16px 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #7c6bf5, #b8b0ff);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.progress-status {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    min-height: 22px;
+}
+
+/* ===== RESULT CARD ===== */
+.result-card {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 16px 12px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.result-card.visible {
+    display: flex;
+}
+
+.result-icon {
+    color: #4ade80;
+    margin-bottom: 6px;
+}
+
+.result-icon svg {
+    width: 36px;
+    height: 36px;
+}
+
+.result-label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.result-url-row {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.result-url {
+    flex: 1;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 40px;
+    color: #c4c4e0;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    min-width: 0;
+}
+
+.btn-copy {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e0e0ff;
+    padding: 6px 16px;
+    border-radius: 40px;
+    font-size: 14px;
+    gap: 6px;
+    transition: 0.15s;
+}
+
+.btn-copy:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-upload-more {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #b8b0ff;
+    padding: 8px 24px;
+    border-radius: 40px;
+    font-size: 14px;
+    transition: 0.15s;
+}
+
+.btn-upload-more:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ===== ERROR ===== */
+.error-message {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: rgba(248, 113, 113, 0.12);
+    border-radius: 30px;
+    color: #fca5a5;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+    border: 1px solid rgba(248, 113, 113, 0.15);
+}
+
+.error-message.visible {
+    display: block;
+}
+
+/* ===== FOOTER ===== */
+.upload-footer {
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.copyright {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+    background: #20b85a;
+}
+
+.whatsapp-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+.whatsapp-btn span {
+    white-space: nowrap;
+}
+
+/* ===== TOAST ===== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 60px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    white-space: nowrap;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(20px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .upload-card {
+        padding: 28px 18px 24px;
+        border-radius: 28px;
+    }
+    .card-title {
+        font-size: 22px;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    .btn-primary {
+        padding: 12px 32px;
+        font-size: 16px;
+    }
+    .result-url {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+    .file-info {
+        padding: 10px 14px;
+    }
+    .upload-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .whatsapp-btn {
+        padding: 8px 18px;
+        font-size: 13px;
+    }
+    .toast {
+        font-size: 14px;
+        padding: 10px 20px;
+        white-space: normal;
+        max-width: 90%;
+    }
+}
