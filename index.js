@@ -42,7 +42,7 @@ const upload = multer({
 
 // الصفحة الرئيسية
 app.get('/', (req, res) => {
-    res.send('Upload API is running 🚀')
+    res.send('B7R DEVX 😍')
 })
 
 // رفع الملف
